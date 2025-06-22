@@ -15,6 +15,7 @@ Perfect for remotely managing Node.js applications from your terminal.
 ## ✨ Features
 
 - SSH into any server with your private key
+- Auto install Node.js and PM2 if not found
 - Execute any PM2 command remotely (`start`, `stop`, `restart`, `delete`, `logs`, etc.)
 - Supports custom ports and SSH keys
 - Optional verbose output with `--verbose`
