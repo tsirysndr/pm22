@@ -1,6 +1,6 @@
 [package]
 name = "pm22"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 description = "A lightweight CLI tool that connects to a remote server over SSH and executes PM2 process manager commands."
 license = "MIT"
@@ -12,10 +12,12 @@ authors = ["Tsiry Sandratraina <tsiry.sndr@rocksky.app>"]
 
 [dependencies]
 anyhow = "1.0.98"
+base64 = "0.22.1"
 clap = "4.5.40"
 env_logger = "0.11.8"
 log = "0.4.27"
 owo-colors = "4.2.1"
+regex = "1.11.1"
 shell-escape = "0.1.5"
 shellexpand = "3.1.1"
 ssh2 = "0.9.5"
