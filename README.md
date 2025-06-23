@@ -37,19 +37,19 @@ pm22 [OPTIONS] <host> <cmd> [args]...
 
 | Name        |	Description                                                         |
 | ----------- | ------------------------------------------------------------------- |
-| `<host>`    |	Host to connect to, including username (e.g., user@your.server.com) |
 | `<cmd>`	    | PM2 command to execute (start, restart, status, logs, etc.)         |
 | `[args]...` |	Additional arguments passed to the PM2 command                      |
 
 ## 🔹 Options
 
-| Flag	                | Description	                                | Default         |
-| --------------------- | ------------------------------------------- | --------------- |
-| `-p`, `--port <port>`	| SSH port to connect to	                    | `22`            |
-| `-k`, `--key <path>`	| Path to your SSH private key                | `~/.ssh/id_rsa` |
-| `-v`, `--verbose`	    | Enable verbose output for debugging/logging |                 |
-| `-h`, `--help`	      | Show help information	                      |                 |
-| `-V`, `--version`	    | Show version information                    |                 |
+| Flag	                | Description	                                    | Default         |
+| --------------------- | ----------------------------------------------- | --------------- |
+| `-h`, `--host <host>`	| Host to connect to (e.g., user@your.server.com) |                 |
+| `-p`, `--port <port>`	| SSH port to connect to	                        | `22`            |
+| `-k`, `--key <path>`	| Path to your SSH private key                    | `~/.ssh/id_rsa` |
+| `-v`, `--verbose`	    | Enable verbose output for debugging/logging     |                 |
+| `--help`	            | Show help information	                          |                 |
+| `-V`, `--version`	    | Show version information                        |                 |
 
 ## 📄 License
 MIT License © 2025 [Tsiry Sandratraina](https://github.com/tsirysndr)
