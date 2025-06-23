@@ -33,6 +33,14 @@ cargo install pm22
 pm22 [OPTIONS] <cmd> [args]...
 ```
 
+## 🔹 Environment Variables
+
+| Variable          | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `PM22_HOST`       | Default host to connect to (e.g., user@your.server.com) |
+| `PM22_PORT`       | Default SSH port to connect to                          |
+| `PM22_KEY`        | Path to your SSH private key, e.g. `~/.ssh/id_rsa`      |
+
 ## 🔹 Arguments
 
 | Name        |	Description                                                         |
