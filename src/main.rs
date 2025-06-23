@@ -1,16 +1,31 @@
 use crate::pm2::run_pm2_command;
 use clap::{Arg, Command as ClapCommand};
+use owo_colors::OwoColorize;
+use std::env;
 
 pub mod pm2;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let banner = format!(
+        "{}\nConnects to a remote server via SSH and executes PM2 commands",
+        r#"
+    ██████  ███    ███ ██████  ██████
+    ██   ██ ████  ████      ██      ██
+    ██████  ██ ████ ██  █████   █████
+    ██      ██  ██  ██ ██      ██
+    ██      ██      ██ ███████ ███████
+"#
+        .cyan()
+    );
     let matches = ClapCommand::new("pm22")
-        .about("Connects to a remote server via SSH and executes PM2 commands")
-        .version("0.1.0")
+        .about(&banner)
+        .version(env!("CARGO_PKG_VERSION"))
         .author("Tsiry Sandratraina <tsiry.sndr@rocksky.app>")
         .arg(
             Arg::new("host")
-                .required(true)
+                .short('h')
+                .long("host")
+                .default_value("PM22_HOST")
                 .help("Host to connect to, with username (e.g., user@host)"),
         )
         .arg(
@@ -51,16 +66,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let verbose = matches.get_flag("verbose");
     init_logger(verbose);
 
-    let host = matches.get_one::<String>("host").unwrap();
-    let port = matches.get_one::<String>("port").unwrap();
-    let key = matches.get_one::<String>("key").unwrap();
+    let host = env::var("PM22_HOST")
+        .unwrap_or_else(|_| matches.get_one::<String>("host").unwrap().to_string());
+    let host = match host.as_str() {
+        "PM22_HOST" => env::var("PM22_HOST")?,
+        _ => host,
+    };
+    let port = env::var("PM22_PORT")
+        .unwrap_or_else(|_| matches.get_one::<String>("port").unwrap().to_string());
+    matches.get_one::<String>("port").unwrap();
+    let key = env::var("PM22_KEY")
+        .unwrap_or_else(|_| matches.get_one::<String>("key").unwrap().to_string());
     let cmd = matches.get_one::<String>("cmd").unwrap();
     let args: Vec<&String> = matches
         .get_many::<String>("args")
         .map(|vals| vals.collect())
         .unwrap_or_default();
 
-    run_pm2_command(host, port.parse().unwrap_or(22), key, cmd, args)?;
+    run_pm2_command(
+        host.trim(),
+        port.parse().unwrap_or(22),
+        key.trim(),
+        cmd,
+        args,
+    )?;
     Ok(())
 }
 
