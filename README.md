@@ -30,7 +30,7 @@ cargo install pm22
 ## 🚀 Usage
 
 ```bash
-pm22 [OPTIONS] <host> <cmd> [args]...
+pm22 [OPTIONS] <cmd> [args]...
 ```
 
 ## 🔹 Arguments
